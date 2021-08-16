@@ -14,19 +14,13 @@ const StudentsList = (props) => {
          req()
         
 
-    },)
+    },[students])
      const req = async ()=> {
         try {
             const response = await fetch(
               'http://10.0.2.2:3000/students',{
                 method: "GET",
-                // headers: {
-                //   'Content-Type': 'application/json',
-                 
-                // }
-                // body: JSON.stringify(
-                //     values
-                // ) 
+                
                 }
             );
             const studentList = await response.json();
