@@ -50,14 +50,10 @@ const StudentDetailScreen = (props) => {
                 headers: {
                   'Content-Type': 'application/json',
                 },
-                // body: JSON.stringify(
-                //     student
-                // ) 
+                
                 }
             );
-            //  const studentList =  await response.json();
-            // setStudent(studentList)
-            // console.log(response)
+            
             
           } catch (error) {
             console.error(error);
@@ -84,9 +80,7 @@ const StudentDetailScreen = (props) => {
                 )
                 }
             );
-            // const studentList =  response.json();
-            // setStudent(studentList)
-            // console.log(student)
+           
           } catch (error) {
             console.error(error);
           }
