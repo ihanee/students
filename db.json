@@ -1,23 +1,16 @@
 {
   "students": [
     {
-      "id": 1,
       "usn": "4SF16IS046",
-      "name": "Mohammad Ajmal Hanee",
-      "cgpa": 8.9
+      "name": "HANEE ",
+      "cgpa": "6",
+      "id": 3
     },
-    
     {
-      "usn": "aasfsfffsfsfsfs",
-      "name": "sfsfefee",
-      "cgpa": "5",
+      "usn": "4SF16IS046",
+      "name": "HANEE",
+      "cgpa": "8",
       "id": 4
-    },
-    {
-      "usn": "4SF16IS055",
-      "name": "SAVRAV",
-      "cgpa": "5",
-      "id": 5
     }
   ]
 }

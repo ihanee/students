@@ -10,8 +10,6 @@ import {
     Alert,
     TouchableOpacity 
 } from 'react-native';
-import firebase from '../database/firebase';
-import FlatButton from '../components/buttons';
 
 
 const StudentDetailScreen = (props) => {
@@ -27,19 +25,17 @@ const StudentDetailScreen = (props) => {
 
 
 
-    const getStudentById =async (id) => {
-       const dbRef = firebase.db.collection('students').doc(id)
-       const doc = await dbRef.get();
-       const student = doc.data();
+    const getStudentById =async (student) => {
+    
        setStudent({
            ...student,
-           id: doc.id
+           id: student.id
        });
        setLoading(false)
     };
 
     useEffect(() => {
-        getStudentById(props.route.params.studentId);
+        getStudentById(props.route.params.student);
     }, []);
 
     const handleChangeText = (usn, value) => {
@@ -47,32 +43,61 @@ const StudentDetailScreen = (props) => {
     };
 
     const deleteStudent = async () =>  {
-        const dbRef = firebase.db.collection('students').doc(props.route.params.studentId);
-        await dbRef.delete();
+        try {
+            const response = await fetch(
+              `http://10.0.2.2:3000/students/${student.id}`,{
+                method: "DELETE",
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                // body: JSON.stringify(
+                //     student
+                // ) 
+                }
+            );
+            //  const studentList =  await response.json();
+            // setStudent(studentList)
+            // console.log(response)
+            
+          } catch (error) {
+            console.error(error);
+          }
         props.navigation.navigate('StudentsList')
     };
 
     const updateStudent = async () => {
        
-            const dbRef =firebase.db.collection('students').doc(student.id);
-            await dbRef.set({
-                usn: student.usn,
-                name: student.name,
-                cgpa: student.cgpa
-            })
-          
-        setStudent(initialState)
+        try {
+            const response = await fetch(
+              `http://10.0.2.2:3000/students/${student.id}`,{
+                method: "PUT",
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    usn : student.usn,
+                    name : student.name,
+                    cgpa: student.cgpa
+                    
+                }
+                    
+                )
+                }
+            );
+            // const studentList =  response.json();
+            // setStudent(studentList)
+            // console.log(student)
+          } catch (error) {
+            console.error(error);
+          }
         props.navigation.navigate('StudentsList')
     }
 
     
 
     const openConfirmationAlert = () => {
-        Alert.alert('Remove The Student', "Are you Sure?",[
-            {text: 'Yes', onPress: () => deleteStudent()},
-            {text: 'No', onPress: () => console.log(false)}
-
-        ])
+        deleteStudent()
+        
     };
 
 

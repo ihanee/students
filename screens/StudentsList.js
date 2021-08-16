@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import { View, Text, ScrollView, Button, StyleSheet } from 'react-native';
-import firebase from '../database/firebase';
 import {ListItem, Avatar, Divider} from 'react-native-elements';
 import Card from '../components/card';
 
@@ -12,47 +11,27 @@ const StudentsList = (props) => {
     const [students, setStudents] = useState([]);
 
     useEffect(  () => {
-        // firebase.db.collection('students').onSnapshot(querySnapshot => {
-        //     const students = [];
-
-
-
-        //     querySnapshot.docs.forEach(doc => {
-        //         const {usn, name, cgpa} = doc.data()
-        //         students.push({
-        //             id: doc.id,
-        //             usn,
-        //             name,
-        //             cgpa
-                    
-        //         })
-        //     });
-        //     setStudents(students)
-        // });
-
-      req()
-      
+         req()
         
 
-    }, [])
+    },)
      const req = async ()=> {
         try {
             const response = await fetch(
-              'http://localhost:3000/students',{
+              'http://10.0.2.2:3000/students',{
                 method: "GET",
-                headers: {
-                  'Content-Type': 'application/json',
+                // headers: {
+                //   'Content-Type': 'application/json',
                  
-                }
+                // }
                 // body: JSON.stringify(
                 //     values
                 // ) 
                 }
             );
-            const json = response.json();
-            setStudents(json.students)
-            console.log(json.students)
-            console.log("hi")
+            const studentList = await response.json();
+            setStudents(studentList)
+            
           } catch (error) {
             console.error(error);
           }
@@ -67,7 +46,7 @@ const StudentsList = (props) => {
                 title="Create Student" 
                 onPress= {() => props.navigation.navigate('CreateStudentScreen')} 
            />
-          {/* {console.log(students)} */}
+         
            {
               
                students.length>0 && 
@@ -78,7 +57,7 @@ const StudentsList = (props) => {
                       key = {student.id} 
                       
                       onPress={() => {props.navigation.navigate('StudentDetailScreen', {
-                           studentId: student.id
+                        student: student
                       })}}
                       >
                         

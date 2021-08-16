@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { View, TextInput, Text, StyleSheet, ScrollView, Button} from 'react-native';
-import firebase from '../database/firebase';
+
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import FlatButton from '../components/button';
@@ -27,42 +27,31 @@ const StudentSchema =yup.object({
 
 const CreateStudentScreen = (props) => {
 
-    // const [student, setStudent] = useState({
-    //     usn: '',
-    //     name: '',
-    //     cgpa: ''
-
-    // });
-
-    // const handleChangeText = (usn, value) => {
-    //     setStudent({...student, [usn]: value })
-    // };
+    
 
      async function saveNewStudent (values){
         
-        // values = { 
-        //     usn: values.usn, 
-        //     name: values.name, 
-        //     cgpa: values.cgpa };
-    
+        
         try {
-            const response = await fetch(
-              'http://localhost:3000/students',{
-                method: "POST",
+            const req = await fetch(
+               'http://10.0.2.2:3000/students',{
+                method: 'POST',
                 headers: {
-                  'Content-Type': 'application/json',
-                 
+                     
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(
-                    values
-                ) 
+                body: JSON.stringify( values)
+
                 }
             );
-            const json = response.json();
+            const json = req.json();
             console.log(json.students)
+            
           } catch (error) {
             console.error(error);
           }
+          props.navigation.navigate('StudentsList')
+          
        
         
       }
@@ -80,9 +69,6 @@ const CreateStudentScreen = (props) => {
                 validationSchema = {StudentSchema}
                 onSubmit={ async (values) => {
                     saveNewStudent(values);
-                    // console.log("hi sunith")
-                    
-                    
                 }
                 }
                 
