@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import { View, Text, ScrollView, Button, StyleSheet } from 'react-native';
-import {ListItem, Avatar, Divider} from 'react-native-elements';
+import {ScrollView, Button, StyleSheet } from 'react-native';
+import {ListItem, Avatar} from 'react-native-elements';
 import Card from '../components/card';
 
 const StudentsList = (props) => {
@@ -39,7 +39,6 @@ const StudentsList = (props) => {
            />
          
            {
-              
                students.length>0 && 
                students.map(student => {
                    return(

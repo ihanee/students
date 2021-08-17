@@ -4,9 +4,6 @@ import {Formik} from 'formik';
 import * as yup from 'yup';
 import FlatButton from '../components/button';
 
-
-
-
 const StudentSchema =yup.object({
     usn: yup.string()
               .required()
@@ -20,9 +17,6 @@ const StudentSchema =yup.object({
                  return parseInt(val) < 10 && parseInt(val) > 0;
              })
 })
-
-
-
 
 const CreateStudentScreen = (props) => {
 
