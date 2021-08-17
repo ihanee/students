@@ -17,6 +17,12 @@
       "name": "Sharique Ahmed",
       "cgpa": "5.5",
       "id": 6
+    },
+    {
+      "usn": "4SF16IS007",
+      "name": "Abhishek",
+      "cgpa": "8",
+      "id": 7
     }
   ]
 }

@@ -45,7 +45,7 @@ const CreateStudentScreen = (props) => {
                 }
             );
             const json = req.json();
-            console.log(json.students)
+            // console.log(json.students)
             
           } catch (error) {
             console.error(error);
