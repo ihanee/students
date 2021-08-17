@@ -4,11 +4,8 @@ import {
     TextInput, 
     ScrollView, 
     StyleSheet,
-    Button,
-    Text,  
+    Button, 
     ActivityIndicator,
-    Alert,
-    TouchableOpacity 
 } from 'react-native';
 
 
@@ -22,8 +19,6 @@ const StudentDetailScreen = (props) => {
     }
     const [student, setStudent] = useState(initialState);
     const [loading, setLoading] = useState(true);
-
-
 
     const getStudentById =async (student) => {
     
@@ -65,19 +60,16 @@ const StudentDetailScreen = (props) => {
        
         try {
             const response = await fetch(
-              `http://10.0.2.2:3000/students/${student.id}`,{
-                method: "PUT",
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    usn : student.usn,
-                    name : student.name,
-                    cgpa: student.cgpa
-                    
-                }
-                    
-                )
+                `http://10.0.2.2:3000/students/${student.id}`,{
+                    method: "PUT",
+                    headers: {
+                    'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        usn : student.usn,
+                        name : student.name,
+                        cgpa: student.cgpa   
+                    })
                 }
             );
            
@@ -87,13 +79,9 @@ const StudentDetailScreen = (props) => {
         props.navigation.navigate('StudentsList')
     }
 
-    
-
     const openConfirmationAlert = () => {
         deleteStudent()
-        
     };
-
 
     if (loading) {
         return(
@@ -106,7 +94,6 @@ const StudentDetailScreen = (props) => {
     
     return(
         <ScrollView  style= {styles.container}>
-       
        
         <View style = {styles.inputGroup}>
             
@@ -155,6 +142,7 @@ const styles = StyleSheet.create({
         padding: 35
     },
     inputGroup:{
+        backgroundColor:"#fff",
         borderWidth: 1,
         borderColor:'#ddd',
         padding: 10,

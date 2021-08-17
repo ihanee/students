@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, TextInput, Text, StyleSheet, ScrollView, Button} from 'react-native';
-
+import { View, TextInput, Text, StyleSheet, ScrollView} from 'react-native';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import FlatButton from '../components/button';
@@ -27,10 +26,7 @@ const StudentSchema =yup.object({
 
 const CreateStudentScreen = (props) => {
 
-    
-
-     async function saveNewStudent (values){
-        
+    async function saveNewStudent (values){
         
         try {
             const req = await fetch(
@@ -44,23 +40,13 @@ const CreateStudentScreen = (props) => {
 
                 }
             );
-            const json = req.json();
-            // console.log(json.students)
+           
             
           } catch (error) {
             console.error(error);
           }
           props.navigation.navigate('StudentsList')
-          
-       
-        
-      }
-           
-        
-    
-
-   
-
+        }
     return(
         <View style={styles.container}>
             
@@ -71,7 +57,6 @@ const CreateStudentScreen = (props) => {
                     saveNewStudent(values);
                 }
                 }
-                
             >
                 {(props)=> (
                 
@@ -105,12 +90,8 @@ const CreateStudentScreen = (props) => {
                      <FlatButton text= 'submit' onPress={props.handleSubmit}  />
                      
                   </ScrollView> 
-                  
                 )}
-            </Formik>
-            
-
-            
+            </Formik>   
         </View>
         
     )
@@ -129,6 +110,7 @@ const styles = StyleSheet.create({
         borderBottomColor: '#cccccc'
     },
     input: {
+        backgroundColor: "#fff",
         borderWidth: 1,
         borderColor:'#ddd',
         padding: 10,
@@ -143,7 +125,5 @@ const styles = StyleSheet.create({
     }
 
 })
-    
-
 
 export default CreateStudentScreen;

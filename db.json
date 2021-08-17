@@ -1,12 +1,6 @@
 {
   "students": [
     {
-      "usn": "4SF16IS046",
-      "name": "Mohammad Ajmal Hanee",
-      "cgpa": "6.2",
-      "id": 4
-    },
-    {
       "usn": "4SF16IS105",
       "name": "Sunith S Acharya",
       "cgpa": "6.5",
@@ -17,12 +11,6 @@
       "name": "Sharique Ahmed",
       "cgpa": "5.5",
       "id": 6
-    },
-    {
-      "usn": "4SF16IS007",
-      "name": "Abhishek",
-      "cgpa": "8",
-      "id": 7
     }
   ]
 }

@@ -3,9 +3,6 @@ import { View, Text, ScrollView, Button, StyleSheet } from 'react-native';
 import {ListItem, Avatar, Divider} from 'react-native-elements';
 import Card from '../components/card';
 
-
-
-
 const StudentsList = (props) => {
 
     const [students, setStudents] = useState([]);
@@ -48,14 +45,12 @@ const StudentsList = (props) => {
                    return(
                     <Card key ={student.id}>
                       <ListItem 
-                      key = {student.id} 
-                      
-                      onPress={() => {props.navigation.navigate('StudentDetailScreen', {
-                        student: student
-                      })}}
-                      >
+                        key = {student.id} 
                         
-                            
+                        onPress={() => {props.navigation.navigate('StudentDetailScreen', {
+                            student: student
+                        })}}
+                    >
                                 <Avatar
                                     size="medium"
                                     rounded
@@ -69,19 +64,13 @@ const StudentsList = (props) => {
                             <ListItem.Subtitle>{student.usn}</ListItem.Subtitle>
                             <ListItem.Subtitle>{student.cgpa}</ListItem.Subtitle>
                             </ListItem.Content>
-                            <ListItem.Chevron />
-                       
-                        
-                          
-                        
+                            <ListItem.Chevron /> 
                       </ListItem> 
                     </Card>
                       
                    )
                })
            }
-         
-
        </ScrollView>
     )
 }
@@ -91,8 +80,6 @@ const styles = StyleSheet.create({
         flex:1,
         padding:0,
         margin: 20,
-
-
     },
     inputContainer: {
         width: 300,
@@ -106,6 +93,5 @@ const styles = StyleSheet.create({
 
     }
 })
-
 
 export default StudentsList
