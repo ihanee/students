@@ -1,16 +1,13 @@
 {
   "students": [
     {
-      "usn": "4SF16IS105",
-      "name": "Sunith S Acharya",
-      "cgpa": "6.5",
-      "id": 5
-    },
-    {
-      "usn": "4SF15IS082",
-      "name": "Sharique Ahmed",
-      "cgpa": "5.5",
-      "id": 6
+      "name": "Mohammad Ajmal Hanee",
+      "phone": "9901306336",
+      "address": "1-269 Ajjinadka House",
+      "city": "Vittal",
+      "postcode": "574245",
+      "country": "India",
+      "id": 1
     }
   ]
 }

@@ -13,9 +13,12 @@ const StudentDetailScreen = (props) => {
 
     const initialState = {
             id: '',
-            usn: '',
             name: '',
-            cgpa: '',
+            phone: '',
+            address: '',
+            city:'',
+            postcode: '',
+            country: ''
     }
     const [student, setStudent] = useState(initialState);
     const [loading, setLoading] = useState(true);
@@ -33,8 +36,8 @@ const StudentDetailScreen = (props) => {
         getStudentById(props.route.params.student);
     }, []);
 
-    const handleChangeText = (usn, value) => {
-        setStudent({...student, [usn]: value })
+    const handleChangeText = (name, value) => {
+        setStudent({...student, [name]: value })
     };
 
     const deleteStudent = async () =>  {
@@ -66,9 +69,12 @@ const StudentDetailScreen = (props) => {
                     'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        usn : student.usn,
                         name : student.name,
-                        cgpa: student.cgpa   
+                        phone : student.phone,
+                        address: student.address,
+                        city: student.city,
+                        postcode:student.postcode,
+                        country: student.country   
                     })
                 }
             );
@@ -98,30 +104,56 @@ const StudentDetailScreen = (props) => {
         <View style = {styles.inputGroup}>
             
             <TextInput 
-                placeholder="USN" 
-                value = {student.usn}
-                maxLength={10}
-                onChangeText={(value) => handleChangeText('usn', value) } 
+                placeholder="Name" 
+                value = {student.name}
+                onChangeText={(value) => handleChangeText('name', value) } 
             />
         </View>
 
        
         <View style = {styles.inputGroup}>
             <TextInput 
-                placeholder="Name"
-                value = {student.name}
-                onChangeText={(value) => handleChangeText('name', value) } 
+                placeholder="Phone"
+                value = {student.phone}
+                keyboardType="numeric"
+                maxLength={10}
+                onChangeText={(value) => handleChangeText('phone', value) } 
             />
         </View>
       
         <View style = {styles.inputGroup}>
             
             <TextInput 
-                 placeholder="CGPA"
-                 value = {student.cgpa}
-                 keyboardType="numeric"
-                 maxLength={3}
-                 onChangeText={(value) => handleChangeText('cgpa', value) } 
+                 placeholder="Address"
+                 value = {student.address}
+                 multiline
+                 onChangeText={(value) => handleChangeText('address', value) } 
+            />
+        </View>
+        <View style = {styles.inputGroup}>
+            
+            <TextInput 
+                 placeholder="City"
+                 value = {student.city}
+                 onChangeText={(value) => handleChangeText('city', value) } 
+            />
+        </View>
+        <View style = {styles.inputGroup}>
+            
+            <TextInput 
+                 placeholder="postcode"
+                 value = {student.postcode}
+                 multiline
+                 onChangeText={(value) => handleChangeText('postcode', value) } 
+            />
+        </View>
+        <View style = {styles.inputGroup}>
+            
+            <TextInput 
+                 placeholder="country"
+                 value = {student.country}
+                 multiline
+                 onChangeText={(value) => handleChangeText('country', value) } 
             />
         </View>
                 <  View style ={styles.buttonContainer}>

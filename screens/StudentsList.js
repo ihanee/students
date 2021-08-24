@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {ScrollView, Button, StyleSheet } from 'react-native';
+import {ScrollView, View, StyleSheet, Modal } from 'react-native';
 import {ListItem, Avatar} from 'react-native-elements';
 import Card from '../components/card';
+import { AntDesign } from '@expo/vector-icons';
+import CreateStudentScreen from './CreateStudentScreen';
 
 const StudentsList = (props) => {
-
+    const [modalOpen, setModalOpen] = useState(false);
     const [students, setStudents] = useState([]);
+    
 
     useEffect(  () => {
          req()
@@ -31,22 +34,36 @@ const StudentsList = (props) => {
 
     return (
        <ScrollView>
-           
-           <Button
-                color= '#32CD32' 
-                title="Create Student" 
-                onPress= {() => props.navigation.navigate('CreateStudentScreen')} 
-           />
+          
          
+            <Modal visible={modalOpen} animationType='slide'>
+                
+            <AntDesign 
+               name="minuscircle" 
+               size={44} 
+               style={styles.modalClose}
+               onPress = {() => setModalOpen(false)} 
+            />
+                    <CreateStudentScreen />
+                
+            </Modal>
+
+            <AntDesign 
+               name="pluscircle" 
+               size={44} 
+               style={styles.modalToggle}
+               onPress = {() => setModalOpen(true)} 
+            />
+
            {
                students.length>0 && 
                students.map(student => {
                    return(
-                    <Card key ={student.id}>
+                    <Card  key ={student.id}>
                       <ListItem 
                         key = {student.id} 
                         
-                        onPress={() => {props.navigation.navigate('StudentDetailScreen', {
+                        onPress={() => {props.navigation.navigate('MapDetails', {
                             student: student
                         })}}
                     >
@@ -60,8 +77,7 @@ const StudentsList = (props) => {
                                     />
                             <ListItem.Content >
                             <ListItem.Title style={styles.name}>{student.name}</ListItem.Title>
-                            <ListItem.Subtitle>{student.usn}</ListItem.Subtitle>
-                            <ListItem.Subtitle>{student.cgpa}</ListItem.Subtitle>
+                            <ListItem.Subtitle>{student.phone}</ListItem.Subtitle>
                             </ListItem.Content>
                             <ListItem.Chevron /> 
                       </ListItem> 
@@ -88,9 +104,24 @@ const styles = StyleSheet.create({
     },
     name :{
         fontSize: 19,
+       
         // fontweight: "bold"
 
+    },
+    modalToggle:{
+        marginBottom: 2,
+        marginTop: 2,
+        padding: 10,
+        alignSelf: "center",
+        color: "green"
+        
+    },
+    modalClose: {
+        marginTop: 10,
+        color: 'red',
+        alignSelf:"center",
+        padding: 10
     }
 })
 
-export default StudentsList
+export default StudentsList;

@@ -5,17 +5,22 @@ import * as yup from 'yup';
 import FlatButton from '../components/button';
 
 const StudentSchema =yup.object({
-    usn: yup.string()
-              .required()
-              .min(10),
     name: yup.string()
+              .required()
+              .min(3),
+    phone: yup.string()
              .required()
-             .min(3),
-    cgpa: yup.string()
+             .max(10),
+    address: yup.string()
              .required()
-             .test('is-num-1-10', 'CGPA must be between 1-10', (val) => {
-                 return parseInt(val) < 10 && parseInt(val) > 0;
-             })
+             .min(10),
+    city: yup.string()
+             .required(),
+    postcode: yup.string()
+             .required()
+             .max(6),
+    country: yup.string()
+             .required(),
 })
 
 const CreateStudentScreen = (props) => {
@@ -45,7 +50,7 @@ const CreateStudentScreen = (props) => {
         <View style={styles.container}>
             
             <Formik
-                initialValues ={{usn: '', name: '', cgpa: ''}}
+                initialValues ={{name: '', phone: '', address: '', city: '', postcode:'', country:''}}
                 validationSchema = {StudentSchema}
                 onSubmit={ async (values) => {
                     saveNewStudent(values);
@@ -58,15 +63,7 @@ const CreateStudentScreen = (props) => {
                       
                       <TextInput
                         style ={ styles.input}
-                        placeholder = 'Enter USN'
-                        onChangeText ={props.handleChange('usn')}
-                        value={props.values.usn}
-                        onBlur ={props.handleBlur('usn')}
-                     />
-                     <Text style= {styles.errorText}>{props.touched.usn && props.errors.usn}</Text>
-                     <TextInput
-                        style ={ styles.input}
-                        placeholder = 'Enter Name'
+                        placeholder = 'Name'
                         onChangeText ={props.handleChange('name')}
                         value={props.values.name}
                         onBlur ={props.handleBlur('name')}
@@ -74,13 +71,48 @@ const CreateStudentScreen = (props) => {
                      <Text style= {styles.errorText}>{props.touched.name && props.errors.name}</Text>
                      <TextInput
                         style ={ styles.input}
-                        placeholder = 'Enter CGPA'
-                        onChangeText ={props.handleChange('cgpa')}
-                        value={props.values.cgpa}
+                        placeholder = 'Phone'
+                        onChangeText ={props.handleChange('phone')}
+                        value={props.values.phone}
                         keyboardType ="numeric"
-                        onBlur ={props.handleBlur('cgpa')}
+                        onBlur ={props.handleBlur('phone')}
                      />
-                     <Text style= {styles.errorText}>{props.touched.cgpa && props.errors.cgpa}</Text>
+                     <Text style= {styles.errorText}>{props.touched.phone && props.errors.phone}</Text>
+                     <TextInput
+                        style ={ styles.input}
+                        placeholder = 'Address'
+                        onChangeText ={props.handleChange('address')}
+                        value={props.values.address}
+                        multiline
+                        onBlur ={props.handleBlur('address')}
+                     />
+                     <Text style= {styles.errorText}>{props.touched.address && props.errors.address}</Text>
+                     <TextInput
+                        style ={ styles.input}
+                        placeholder = 'City'
+                        onChangeText ={props.handleChange('city')}
+                        value={props.values.city}
+                        onBlur ={props.handleBlur('city')}
+                     />
+                     <Text style= {styles.errorText}>{props.touched.city && props.errors.city}</Text>
+                     <TextInput
+                        style ={ styles.input}
+                        placeholder = 'Postcode'
+                        onChangeText ={props.handleChange('postcode')}
+                        value={props.values.postcode}
+                        multiline
+                        onBlur ={props.handleBlur('postcode')}
+                     />
+                     <Text style= {styles.errorText}>{props.touched.postcode && props.errors.postcode}</Text>
+                     <TextInput
+                        style ={ styles.input}
+                        placeholder = 'Country'
+                        onChangeText ={props.handleChange('country')}
+                        value={props.values.country}
+                        multiline
+                        onBlur ={props.handleBlur('country')}
+                     />
+                     <Text style= {styles.errorText}>{props.touched.country && props.errors.country}</Text>
                      <FlatButton text= 'submit' onPress={props.handleSubmit}  />
                      
                   </ScrollView> 
